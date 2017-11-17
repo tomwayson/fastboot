@@ -176,7 +176,8 @@ class EmberApp {
 
     // Retrieve the application factory from within the sandbox
     let AppFactory = sandbox.run(function(ctx) {
-      return ctx.require('~fastboot/app-factory');
+      const requireFunctionName = ctx.requireFunctionName || 'require';
+      return ctx[requireFunctionName]('~fastboot/app-factory');
     });
 
     // If the application factory couldn't be found, throw an error
